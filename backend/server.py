@@ -5,10 +5,11 @@ Receives JPEG frames from the T5AI device, runs MoveNet pose estimation,
 detects falls, saves snapshots, and fires Tuya Cloud alerts.
 
 Endpoints:
-  POST /analyze    — main inference endpoint (called by the device)
-  GET  /health     — liveness check
-  GET  /falls      — list of saved fall events (last 20)
-  POST /reset/{device_id} — clear pose history after alert is handled
+  POST /analyze            — main inference endpoint (called by the device)
+  POST /fall-response      — device sends yes/no after asking user "Are you okay?"
+  GET  /health             — liveness check
+  GET  /falls              — list of saved fall events (last 20)
+  POST /reset/{device_id}  — clear pose history after alert is handled
 """
 
 import json
@@ -111,6 +112,46 @@ async def analyze_frame(request: Request, background_tasks: BackgroundTasks):
         background_tasks.add_task(_handle_fall, image_bytes, device_id, result)
 
     return JSONResponse(result)
+
+
+@app.post("/fall-response")
+async def fall_response(request: Request, background_tasks: BackgroundTasks):
+    """
+    Called by the T5AI after the user answers "Are you okay?"
+
+    Request:
+      Header  X-Device-ID: <device_id>
+      Body    JSON {"response": "ok"} or {"response": "help"}
+
+    Response:
+      {"status": "ok", "response": "ok" | "help", "device_id": str}
+    """
+    device_id = request.headers.get("X-Device-ID", "t5ai-default")
+
+    try:
+        body = await request.json()
+    except Exception:
+        return JSONResponse({"error": "body must be JSON: {\"response\": \"ok\" or \"help\"}"}, status_code=400)
+
+    user_response = body.get("response", "").lower().strip()
+
+    if user_response not in ("ok", "help"):
+        return JSONResponse(
+            {"error": "response must be 'ok' or 'help'"},
+            status_code=400,
+        )
+
+    if user_response == "ok":
+        print(f"[RESPONSE] device={device_id} → False alarm, user is okay")
+        background_tasks.add_task(alert.send_user_ok_alert, device_id)
+    else:
+        print(f"[RESPONSE] device={device_id} → USER NEEDS HELP")
+        background_tasks.add_task(alert.send_needs_help_alert, device_id)
+
+    # Reset pose history so the next real fall can be detected fresh
+    detector.reset_device(device_id)
+
+    return JSONResponse({"status": "ok", "response": user_response, "device_id": device_id})
 
 
 @app.get("/health")

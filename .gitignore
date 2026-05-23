@@ -7,3 +7,5 @@ backend/snapshots/*.json
 backend/__pycache__/
 backend/*.egg-info/
 backend/.venv/
+backend/*.tflite
+backend/*.pt
