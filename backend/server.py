@@ -1,8 +1,8 @@
 """
 FallGuard Backend — FastAPI server
 
-Receives JPEG frames from the T5AI device, runs MoveNet pose estimation,
-detects falls, saves snapshots, and fires Tuya Cloud alerts.
+Receives JPEG frames from the T5AI device, runs YOLOv8-pose fall detection,
+and returns the result. The device handles all Tuya Cloud communication.
 
 Endpoints:
   POST /analyze            — main inference endpoint (called by the device)
@@ -23,22 +23,16 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
 from fall_detector import FallDetector
-from tuya_alert import TuyaAlert
 
 # ---------------------------------------------------------------------------
 app = FastAPI(title="FallGuard Backend", version="1.0.0")
 
 detector = FallDetector()
-alert = TuyaAlert()
 
 SNAPSHOTS_DIR = Path(os.getenv("SNAPSHOTS_DIR", "snapshots"))
 SNAPSHOTS_DIR.mkdir(exist_ok=True)
 # ---------------------------------------------------------------------------
 
-
-# ---------------------------------------------------------------------------
-# Background task helpers
-# ---------------------------------------------------------------------------
 
 def _save_snapshot(image_bytes: bytes, device_id: str, result: dict):
     ts = result.get("timestamp", time.time())
@@ -49,26 +43,15 @@ def _save_snapshot(image_bytes: bytes, device_id: str, result: dict):
     meta_path = SNAPSHOTS_DIR / f"fall_{safe_id}_{dt_str}.json"
 
     img_path.write_bytes(image_bytes)
-
-    meta = {
+    meta_path.write_text(json.dumps({
         "device_id": device_id,
         "timestamp": ts,
         "datetime_utc": dt_str,
         "body_angle": result.get("body_angle"),
         "confidence": result.get("confidence"),
         "snapshot": str(img_path),
-    }
-    meta_path.write_text(json.dumps(meta, indent=2))
+    }, indent=2))
     print(f"[server] Snapshot saved → {img_path}")
-
-
-def _handle_fall(image_bytes: bytes, device_id: str, result: dict):
-    _save_snapshot(image_bytes, device_id, result)
-    sent = alert.send_fall_alert(device_id=device_id, extra=result)
-    if sent:
-        # Reset DP after a short delay so the next fall can re-trigger the automation
-        time.sleep(3)
-        alert.clear_fall_alert(device_id=device_id)
 
 
 # ---------------------------------------------------------------------------
@@ -88,11 +71,17 @@ async def analyze_frame(request: Request, background_tasks: BackgroundTasks):
       {
         "fall_detected": bool,
         "pose_state": "standing" | "fallen" | "transitioning" | "unknown",
-        "body_angle": float | null,   // degrees from vertical
+        "body_angle": float | null,
         "confidence": float,
+        "persons_detected": int,
         "device_id": str,
         "timestamp": float
       }
+
+    If fall_detected is true, the device should:
+      1. Set fall_alert DP on Tuya Cloud
+      2. Trigger voice prompt: "Are you okay?"
+      3. Set user_ok or needs_help DP based on response
     """
     image_bytes = await request.body()
     device_id = request.headers.get("X-Device-ID", "t5ai-default")
@@ -108,10 +97,31 @@ async def analyze_frame(request: Request, background_tasks: BackgroundTasks):
             f"angle={result['body_angle']}° "
             f"conf={result['confidence']}"
         )
-        background_tasks.add_task(_handle_fall, image_bytes, device_id, result)
+        background_tasks.add_task(_save_snapshot, image_bytes, device_id, result)
 
     return JSONResponse(result)
 
+
+@app.post("/mock-fall")
+async def mock_fall(request: Request):
+    """
+    Testing endpoint — always returns fall_detected: true.
+    Firmware team uses this while the real ML pipeline is being integrated.
+
+    Same request format as /analyze:
+      Header  X-Device-ID: <device_id>
+      Body    raw JPEG bytes (ignored)
+    """
+    device_id = request.headers.get("X-Device-ID", "t5ai-default")
+    return JSONResponse({
+        "device_id": device_id,
+        "fall_detected": True,
+        "pose_state": "fallen",
+        "body_angle": 78.3,
+        "confidence": 0.91,
+        "persons_detected": 1,
+        "timestamp": time.time(),
+    })
 
 
 @app.get("/health")
@@ -133,7 +143,7 @@ def list_falls():
 
 @app.post("/reset/{device_id}")
 def reset_device(device_id: str):
-    """Clear pose history for a device (call this after the alert is acknowledged)."""
+    """Clear pose history for a device."""
     detector.reset_device(device_id)
     return {"status": "reset", "device_id": device_id}
 
