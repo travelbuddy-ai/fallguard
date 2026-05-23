@@ -1,1 +1,9 @@
 app_default.config
+
+# backend
+backend/.env
+backend/snapshots/*.jpg
+backend/snapshots/*.json
+backend/__pycache__/
+backend/*.egg-info/
+backend/.venv/
