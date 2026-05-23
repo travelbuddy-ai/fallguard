@@ -115,7 +115,7 @@ async def analyze_frame(request: Request, background_tasks: BackgroundTasks):
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "model": "movenet_lightning_v4"}
+    return {"status": "ok", "model": "yolov8n-pose"}
 
 
 @app.get("/falls")

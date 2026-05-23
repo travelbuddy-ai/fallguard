@@ -1,44 +1,34 @@
 import io
 import time
 from collections import deque
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 import numpy as np
 from PIL import Image
 
-# Lazy-import tensorflow so the module can be imported without TF installed
-# (e.g. during IDE analysis). TF is loaded on first FallDetector instantiation.
-_tf = None
-_hub = None
+MODEL_NAME = "yolov8n-pose.pt"  # nano — fast, auto-downloads ~6MB on first run
 
-
-def _load_tf():
-    global _tf, _hub
-    if _tf is None:
-        import tensorflow as tf
-        import tensorflow_hub as hub
-        _tf = tf
-        _hub = hub
-
-
-# MoveNet Lightning keypoint indices (COCO format, 17 points)
-NOSE = 0
+# COCO keypoint indices (YOLOv8 uses same 17-point format)
 LEFT_SHOULDER, RIGHT_SHOULDER = 5, 6
 LEFT_HIP, RIGHT_HIP = 11, 12
-LEFT_KNEE, RIGHT_KNEE = 13, 14
-LEFT_ANKLE, RIGHT_ANKLE = 15, 16
 
-MOVENET_URL = "https://tfhub.dev/google/movenet/singlepose/lightning/4"
-INPUT_SIZE = 192  # Lightning model uses 192x192
+# Tuning knobs
+FALLEN_ANGLE = 55       # degrees from vertical → fallen
+STANDING_ANGLE = 40     # degrees from vertical → upright
+MIN_KEYPOINT_CONF = 0.25
+MIN_PERSON_CONF = 0.4   # discard low-confidence detections
+HISTORY_LEN = 6
 
-# Tuning knobs ---------------------------------------------------------------
-# Body angle (degrees from vertical) thresholds
-FALLEN_ANGLE = 55      # above this → lying/fallen
-STANDING_ANGLE = 40    # below this → upright
+_model = None
 
-MIN_KEYPOINT_CONF = 0.25  # ignore keypoints below this confidence
-HISTORY_LEN = 6           # pose history window per device
-# ---------------------------------------------------------------------------
+
+def _load_model():
+    global _model
+    if _model is None:
+        from ultralytics import YOLO
+        print("[FallDetector] Loading YOLOv8n-pose…")
+        _model = YOLO(MODEL_NAME)
+        print("[FallDetector] Model ready.")
 
 
 class _DeviceState:
@@ -49,43 +39,48 @@ class _DeviceState:
 
 class FallDetector:
     def __init__(self):
-        _load_tf()
-        print("[FallDetector] Loading MoveNet Lightning from TF Hub…")
-        model = _hub.load(MOVENET_URL)
-        self._infer = model.signatures["serving_default"]
+        _load_model()
         self._states: dict = {}
         print("[FallDetector] Ready.")
 
     # ------------------------------------------------------------------
     def analyze(self, image_bytes: bytes, device_id: str) -> dict:
-        """
-        Run pose estimation on a single JPEG frame.
-
-        Returns a dict with:
-          fall_detected (bool), confidence (float), body_angle (float|None),
-          pose_state (str: standing | fallen | transitioning | unknown)
-        """
         state = self._states.setdefault(device_id, _DeviceState())
 
-        tensor = self._preprocess(image_bytes)
-        if tensor is None:
-            return self._build_result(device_id, False, 0.0, None, "unknown")
+        img = self._decode(image_bytes)
+        if img is None:
+            return self._build_result(device_id, False, 0.0, None, "unknown", 0)
 
-        keypoints = self._run_inference(tensor)
-        angle, conf = self._body_angle(keypoints)
+        persons = self._run_inference(img)
 
-        if angle is None:
+        if not persons:
             state.history.append("unknown")
-            return self._build_result(device_id, False, conf, None, "unknown")
+            state.last_state = "unknown"
+            return self._build_result(device_id, False, 0.0, None, "unknown", 0)
 
-        if angle > FALLEN_ANGLE:
-            current_state = "fallen"
-        elif angle < STANDING_ANGLE:
-            current_state = "standing"
-        else:
-            current_state = "transitioning"
+        # Classify every detected person; a fall by ANY person triggers the alert
+        current_state = "unknown"
+        best_angle: Optional[float] = None
+        best_conf = 0.0
 
-        # Fall = first time we see "fallen" after at least one "standing" frame
+        for kps in persons:
+            angle, conf = self._body_angle(kps)
+            if angle is None:
+                continue
+
+            if angle > FALLEN_ANGLE:
+                pstate = "fallen"
+            elif angle < STANDING_ANGLE:
+                pstate = "standing"
+            else:
+                pstate = "transitioning"
+
+            # Prioritise fallen over other states when multiple people present
+            if pstate == "fallen" or current_state == "unknown":
+                current_state = pstate
+                best_angle = angle
+                best_conf = conf
+
         was_standing = "standing" in state.history
         is_new_fall = (
             current_state == "fallen"
@@ -96,37 +91,39 @@ class FallDetector:
         state.history.append(current_state)
         state.last_state = current_state
 
-        return self._build_result(device_id, is_new_fall, conf, angle, current_state)
+        return self._build_result(
+            device_id, is_new_fall, best_conf, best_angle, current_state, len(persons)
+        )
 
     def reset_device(self, device_id: str):
-        """Clear pose history for a device (call after alert acknowledged)."""
         self._states.pop(device_id, None)
 
     # ------------------------------------------------------------------
-    # Private helpers
-    # ------------------------------------------------------------------
-
-    def _preprocess(self, image_bytes: bytes) -> Optional[object]:
+    def _decode(self, image_bytes: bytes) -> Optional[np.ndarray]:
         try:
             img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-            img = img.resize((INPUT_SIZE, INPUT_SIZE))
-            arr = np.array(img, dtype=np.int32)
-            return _tf.constant(arr[np.newaxis, ...])
+            return np.array(img)
         except Exception as exc:
             print(f"[FallDetector] Image decode error: {exc}")
             return None
 
-    def _run_inference(self, tensor) -> np.ndarray:
-        outputs = self._infer(image=tensor)
-        # output_0 shape: (1, 1, 17, 3) → [y, x, confidence] normalised 0-1
-        return outputs["output_0"].numpy()[0, 0]
+    def _run_inference(self, img: np.ndarray) -> List[np.ndarray]:
+        """Returns one (17, 3) keypoint array per detected person [x, y, conf]."""
+        results = _model(img, verbose=False, conf=MIN_PERSON_CONF)
+        persons = []
+        for r in results:
+            if r.keypoints is None or r.keypoints.data is None:
+                continue
+            kps = r.keypoints.data.cpu().numpy()  # (N, 17, 3)
+            for i in range(kps.shape[0]): 
+                persons.append(kps[i])
+        return persons
 
     def _body_angle(self, kp: np.ndarray) -> Tuple[Optional[float], float]:
         """
+        YOLOv8 keypoint format: [x, y, conf] in pixel coords.
         Returns (angle_from_vertical_degrees, min_keypoint_confidence).
-
-        The body vector runs from the mid-hip to mid-shoulder.
-        Vertical → angle ≈ 0°.  Horizontal → angle ≈ 90°.
+        Vertical body → ~0°.  Horizontal (fallen) → ~90°.
         """
         ls, rs = kp[LEFT_SHOULDER], kp[RIGHT_SHOULDER]
         lh, rh = kp[LEFT_HIP], kp[RIGHT_HIP]
@@ -135,14 +132,12 @@ class FallDetector:
         if conf < MIN_KEYPOINT_CONF:
             return None, conf
 
-        mid_shoulder_y = (ls[0] + rs[0]) / 2
-        mid_shoulder_x = (ls[1] + rs[1]) / 2
-        mid_hip_y = (lh[0] + rh[0]) / 2
-        mid_hip_x = (lh[1] + rh[1]) / 2
+        mid_shoulder = np.array([(ls[0] + rs[0]) / 2, (ls[1] + rs[1]) / 2])
+        mid_hip = np.array([(lh[0] + rh[0]) / 2, (lh[1] + rh[1]) / 2])
 
-        # In image coords y increases downward; hip_y > shoulder_y when standing
-        dy = mid_hip_y - mid_shoulder_y
-        dx = mid_hip_x - mid_shoulder_x
+        # y increases downward; hip_y > shoulder_y when standing
+        dy = mid_hip[1] - mid_shoulder[1]
+        dx = mid_hip[0] - mid_shoulder[0]
         angle = float(np.degrees(np.arctan2(abs(dx), abs(dy) + 1e-6)))
         return angle, conf
 
@@ -153,6 +148,7 @@ class FallDetector:
         confidence: float,
         body_angle: Optional[float],
         pose_state: str,
+        persons_detected: int,
     ) -> dict:
         return {
             "device_id": device_id,
@@ -160,5 +156,6 @@ class FallDetector:
             "confidence": round(confidence, 3),
             "body_angle": round(body_angle, 1) if body_angle is not None else None,
             "pose_state": pose_state,
+            "persons_detected": persons_detected,
             "timestamp": time.time(),
         }
