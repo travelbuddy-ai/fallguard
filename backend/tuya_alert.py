@@ -29,9 +29,9 @@ TUYA_DEVICE_ID = os.getenv("TUYA_DEVICE_ID", "")
 # The data-point code you define in the Tuya IoT Platform for your device.
 # Create a Boolean DP with this code, then make a Smart app automation:
 #   trigger: fall_alert == true  →  action: send push notification
-FALL_ALERT_DP_CODE  = "fall_alert"
-USER_OK_DP_CODE     = "user_ok"
-NEEDS_HELP_DP_CODE  = "needs_help"
+FALL_ALERT_DP_CODE = "fall_alert"
+# user_ok and needs_help DPs are set directly by the T5AI firmware
+# after voice response — the backend does not touch them
 
 
 class TuyaAlert:
@@ -54,40 +54,6 @@ class TuyaAlert:
             return self._send_command(token, device_id, FALL_ALERT_DP_CODE, True)
         except Exception as exc:
             print(f"[TuyaAlert] Error: {exc}")
-            return False
-
-    def send_user_ok_alert(self, device_id: str = "") -> bool:
-        """User responded 'Yes I'm okay' — send false alarm follow-up."""
-        device_id = device_id or TUYA_DEVICE_ID
-        if not (TUYA_CLIENT_ID and TUYA_CLIENT_SECRET and device_id):
-            print("[TuyaAlert] Not configured — skipping user_ok alert.")
-            return False
-        try:
-            token = self._get_token()
-            sent = self._send_command(token, device_id, USER_OK_DP_CODE, True)
-            if sent:
-                time.sleep(3)
-                self._send_command(token, device_id, USER_OK_DP_CODE, False)
-            return sent
-        except Exception as exc:
-            print(f"[TuyaAlert] user_ok error: {exc}")
-            return False
-
-    def send_needs_help_alert(self, device_id: str = "") -> bool:
-        """User responded 'No I need help' — send urgent follow-up."""
-        device_id = device_id or TUYA_DEVICE_ID
-        if not (TUYA_CLIENT_ID and TUYA_CLIENT_SECRET and device_id):
-            print("[TuyaAlert] Not configured — skipping needs_help alert.")
-            return False
-        try:
-            token = self._get_token()
-            sent = self._send_command(token, device_id, NEEDS_HELP_DP_CODE, True)
-            if sent:
-                time.sleep(3)
-                self._send_command(token, device_id, NEEDS_HELP_DP_CODE, False)
-            return sent
-        except Exception as exc:
-            print(f"[TuyaAlert] needs_help error: {exc}")
             return False
 
     def clear_fall_alert(self, device_id: str = "") -> bool:

@@ -14,22 +14,37 @@ FallGuard is a standalone fall detection device built on the Tuya T5AI board + c
 └── Motion spike detected?
         │
         ▼
-Send frame to backend (laptop / Render / Railway)
+Send frame to backend (laptop / ngrok / Render)
         │
         ▼
 Python server: YOLOv8-pose check
 "Is this a fall pose? Person horizontal + previously vertical?"
         │
         ▼
-Fall confirmed → POST to Tuya Cloud → push alert to phone
+Fall confirmed → POST fall_alert DP to Tuya Cloud
+              → Smart Life push: "⚠️ Fall detected"
               → store snapshot with timestamp
         │
         ▼
-[T5AI] lights up → asks "Are you okay?"
+[T5AI] screen lights up + speaker plays:
+"Are you okay? Please say Yes or No"
         │
-        ├── Yes → follow-up alert: "False alarm. Person is okay."
+        ├── Hears "YES"
+        │       ↓
+        │   T5AI sets DP: user_ok = true
+        │   Smart Life push: "✅ False alarm. Person is okay."
         │
-        └── No  → follow-up alert: "Person confirmed they need help."
+        ├── Hears "NO"
+        │       ↓
+        │   T5AI sets DP: needs_help = true
+        │   Smart Life push: "⚠️ Person needs help"
+        │   Repeat every 60s until caregiver acknowledges
+        │
+        └── No response in 30s
+                ↓
+            T5AI sets DP: needs_help = true
+            Smart Life push: "⚠️ No response — person may be unconscious"
+            Repeat every 60s until caregiver acknowledges
 ```
 
 ## Hardware
@@ -67,9 +82,9 @@ python server.py           # runs on :8080
 | Method | Path | Description |
 | --- | --- | --- |
 | POST | `/analyze` | Receive JPEG frame from device, run pose detection |
-| POST | `/fall-response` | Receive yes/no response from device after asking user |
 | GET | `/health` | Liveness check |
 | GET | `/falls` | List recent fall events |
+| POST | `/reset/{device_id}` | Clear pose history for a device |
 
 ### Environment Variables
 
