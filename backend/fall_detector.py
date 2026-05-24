@@ -109,7 +109,9 @@ class FallDetector:
 
     def _run_inference(self, img: np.ndarray) -> List[np.ndarray]:
         """Returns one (17, 3) keypoint array per detected person [x, y, conf]."""
-        results = _model(img, verbose=False, conf=MIN_PERSON_CONF)
+        t0 = time.time()
+        results = _model(img, verbose=False, conf=MIN_PERSON_CONF, imgsz=320)
+        print(f"[FallDetector] inference {(time.time()-t0)*1000:.0f}ms")
         persons = []
         for r in results:
             if r.keypoints is None or r.keypoints.data is None:

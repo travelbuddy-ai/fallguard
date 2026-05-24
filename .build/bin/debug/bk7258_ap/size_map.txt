@@ -631,13 +631,13 @@
    1657	      7	   1656	   1340	    316	      1	      6	   1663	    67f	ai_mode_wakeup.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
    1554	      7	   1553	   1268	    285	      1	      6	   1560	    618	ai_mode_hold.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
    1550	      7	   1549	   1228	    321	      1	      6	   1556	    614	ai_mode_oneshot.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
-   3466	    145	   3466	   3224	    242	      0	    145	   3611	    e1b	ai_ui_chat_wechat.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
+   3462	    145	   3462	   3220	    242	      0	    145	   3607	    e17	ai_ui_chat_wechat.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
     371	    252	    119	     56	     63	    252	      0	    371	    173	ai_ui_icon_font.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
     768	     72	    768	    612	    156	      0	     72	    840	    348	ai_ui_manage.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
     725	     61	    725	    576	    149	      0	     61	    786	    312	ai_ui_stream_text.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
     248	      4	    248	     80	    168	      0	      4	    252	     fc	font_emoji_32.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
      40	      4	     40	     40	      0	      0	      4	     44	     2c	ai_user_event.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
-    793	      4	    793	    372	    421	      0	      4	    797	    31d	app_camera_analyze.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
+    825	      4	    825	    404	    421	      0	      4	    829	    33d	app_camera_analyze.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
     624	     10	    624	    438	    186	      0	     10	    634	    27a	app_chat_bot.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
    1689	     11	   1687	    988	    699	      2	      9	   1698	    6a2	app_fall_handler.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
     760	      0	    760	    484	    276	      0	      0	    760	    2f8	reset_netcfg.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
@@ -674,7 +674,7 @@
    3096	      0	   3096	      0	   3096	      0	      0	   3096	    c18	emoji_1f644_32.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
    3096	      0	   3096	      0	   3096	      0	      0	   3096	    c18	emoji_1f914_32.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
    3096	      0	   3096	      0	   3096	      0	      0	   3096	    c18	emoji_1f924_32.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a)
-1053054	   1512	1052614	  32556	1020058	    440	   1072	1054126	 1015ae	/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a
+1053082	   1512	1052642	  32584	1020058	    440	   1072	1054154	 1015ca	/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaapp.a
 
   flash	    ram	   text	   code	 rodata	   data	    bss	    dec	    hex	filename
    3088	     84	   3088	   2716	    372	      0	     84	   3172	    c64	svc_ai_player.c.o (ex /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/lib/libtuyaos.a)

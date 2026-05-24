@@ -93,6 +93,8 @@ async def analyze_frame(request: Request, background_tasks: BackgroundTasks):
 
     result = detector.analyze(image_bytes, device_id)
 
+    print(f"[analyze] {json.dumps(result)}")
+
     if result["fall_detected"]:
         print(
             f"[FALL] device={device_id} "

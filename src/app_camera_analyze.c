@@ -24,10 +24,11 @@ static THREAD_HANDLE s_thread = NULL;
 static void _analyze_task(void *arg)
 {
     for (;;) {
-        tal_system_sleep(ANALYZE_INTERVAL_MS);
+        uint32_t t_start = tal_system_get_millisecond();
 
         /* Skip while already handling a fall response */
         if (app_fall_response_is_pending()) {
+            tal_system_sleep(ANALYZE_INTERVAL_MS);
             continue;
         }
 
@@ -84,6 +85,11 @@ static void _analyze_task(void *arg)
         }
 
         http_client_free(&response);
+
+        uint32_t elapsed = tal_system_get_millisecond() - t_start;
+        if (elapsed < ANALYZE_INTERVAL_MS) {
+            tal_system_sleep(ANALYZE_INTERVAL_MS - elapsed);
+        }
     }
 }
 
