@@ -31,8 +31,8 @@ def send_fall_alert(image_bytes: bytes, result: dict) -> bool:
     dt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     caption = (
         f"🚨 FALL ALERT! 🚨"
-        f"Someone may have fallen. Please check on them immediately.\n"
-        f"\n"
+        f"Halp! I've fallen and I can't get up! 👵\n"
+        f"\n\n"
         f"Time — {dt}\n"
         # f"\n"
         # f"Pose: {result.get('pose_state', 'unknown')}\n"
