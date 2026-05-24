@@ -5,6 +5,7 @@
 
 #include <string.h>
 #include <ctype.h>
+#include "alerting_audio.h"
 
 #include "tal_api.h"
 #include "tuya_iot.h"
@@ -136,7 +137,10 @@ void app_fall_detected(void)
     s_state = FALL_STATE_WAITING;
 
 #if defined(ENABLE_COMP_AI_AUDIO) && (ENABLE_COMP_AI_AUDIO == 1)
-    ai_audio_player_alert(AI_AUDIO_ALERT_WAKEUP);
+    ai_audio_player_set_vol(90);
+    ai_audio_play_data(AI_AUDIO_CODEC_MP3,
+                       _tmp_alerting_mp3,
+                       _tmp_alerting_mp3_len);
 #endif
 
     _show_screen("FALL DETECTED", "Are you okay? Say YES or NO");
