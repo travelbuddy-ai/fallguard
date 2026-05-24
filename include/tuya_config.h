@@ -33,7 +33,7 @@
  * @brief Fall detection backend — set to your backend laptop's local IP
  */
 #ifndef FALL_BACKEND_HOST
-#define FALL_BACKEND_HOST "192.168.34.132"
+#define FALL_BACKEND_HOST "192.168.34.127"
 #endif
 #ifndef FALL_BACKEND_PORT
 #define FALL_BACKEND_PORT 8080

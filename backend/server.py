@@ -24,6 +24,7 @@ from fastapi.responses import JSONResponse
 
 from fall_detector import FallDetector
 from tuya_alert import TuyaAlert
+from telegram_alert import send_fall_alert as telegram_send, send_mock_fall_alert as telegram_mock
 
 # ---------------------------------------------------------------------------
 app = FastAPI(title="FallGuard Backend", version="1.0.0")
@@ -102,6 +103,7 @@ async def analyze_frame(request: Request, background_tasks: BackgroundTasks):
             f"conf={result['confidence']}"
         )
         background_tasks.add_task(_save_snapshot, image_bytes, device_id, result)
+        background_tasks.add_task(telegram_send, image_bytes, result)
 
     return JSONResponse(result)
 
@@ -123,6 +125,7 @@ async def mock_fall(request: Request, background_tasks: BackgroundTasks):
         "timestamp": time.time(),
     }
     background_tasks.add_task(alert.send_fall_alert, device_id)
+    background_tasks.add_task(telegram_mock, result)
     return JSONResponse(result)
 
 
