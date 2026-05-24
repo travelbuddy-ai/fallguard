@@ -23,11 +23,13 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
 from fall_detector import FallDetector
+from tuya_alert import TuyaAlert
 
 # ---------------------------------------------------------------------------
 app = FastAPI(title="FallGuard Backend", version="1.0.0")
 
 detector = FallDetector()
+alert = TuyaAlert()
 
 SNAPSHOTS_DIR = Path(os.getenv("SNAPSHOTS_DIR", "snapshots"))
 SNAPSHOTS_DIR.mkdir(exist_ok=True)
@@ -103,25 +105,23 @@ async def analyze_frame(request: Request, background_tasks: BackgroundTasks):
 
 
 @app.post("/mock-fall")
-async def mock_fall(request: Request):
+async def mock_fall(request: Request, background_tasks: BackgroundTasks):
     """
-    Testing endpoint — always returns fall_detected: true.
-    Firmware team uses this while the real ML pipeline is being integrated.
-
-    Same request format as /analyze:
-      Header  X-Device-ID: <device_id>
-      Body    raw JPEG bytes (ignored)
+    Testing endpoint — returns fall_detected: true AND fires the Tuya Cloud
+    fall_alert DP so the device receives it via MQTT.
     """
-    device_id = request.headers.get("X-Device-ID", "t5ai-default")
-    return JSONResponse({
-        "device_id": device_id,
+    device_id = request.headers.get("X-Device-ID", "")
+    result = {
+        "device_id": device_id or os.getenv("TUYA_DEVICE_ID", "unknown"),
         "fall_detected": True,
         "pose_state": "fallen",
         "body_angle": 78.3,
         "confidence": 0.91,
         "persons_detected": 1,
         "timestamp": time.time(),
-    })
+    }
+    background_tasks.add_task(alert.send_fall_alert, device_id)
+    return JSONResponse(result)
 
 
 @app.get("/health")

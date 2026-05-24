@@ -23,11 +23,21 @@
  */
 
 #ifndef TUYA_PRODUCT_ID
-#define TUYA_PRODUCT_ID "p320pepzvmm1ghse"
+#define TUYA_PRODUCT_ID "qhj1rbe2rn2uifru"
 #endif
 
-#define TUYA_OPENSDK_UUID    "uuidxxxxxxxxxxxxxxxx"             // Please change the correct uuid
-#define TUYA_OPENSDK_AUTHKEY "keyxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" // Please change the correct authkey
+#define TUYA_OPENSDK_UUID    "uuid4c048153de7f9347"
+#define TUYA_OPENSDK_AUTHKEY "YvGNPX4bSs8Ly0cbxE6A0RKe0tJP8v8f"
+
+/**
+ * @brief Fall detection backend — set to your backend laptop's local IP
+ */
+#ifndef FALL_BACKEND_HOST
+#define FALL_BACKEND_HOST "192.168.34.132"
+#endif
+#ifndef FALL_BACKEND_PORT
+#define FALL_BACKEND_PORT 8080
+#endif
 
 /**
  * @brief PINCODE for AP provisioning

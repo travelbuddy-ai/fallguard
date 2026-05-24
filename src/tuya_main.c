@@ -42,6 +42,8 @@
 #include "board_com_api.h"
 
 #include "app_chat_bot.h"
+#include "app_fall_handler.h"
+#include "app_camera_analyze.h"
 #include "reset_netcfg.h"
 
 #if defined(ENABLE_BATTERY) && (ENABLE_BATTERY == 1)
@@ -62,7 +64,10 @@ tuya_iot_license_t license;
 #define PROJECT_VERSION "1.0.0"
 #endif
 
-#define DPID_VOLUME 3
+#define DPID_VOLUME     3
+#define DPID_FALL_ALERT 103  /* incoming: backend detected a fall      */
+#define DPID_USER_OK    104  /* outgoing: user responded yes (set by fall handler) */
+#define DPID_NEEDS_HELP 105  /* outgoing: user responded no / no response */
 
 /**
  * @brief user defined log output api, in this demo, it will use uart0 as log-tx
@@ -124,6 +129,20 @@ OPERATE_RET audio_dp_obj_proc(dp_obj_recv_t *dpobj)
             snprintf(volume_str, sizeof(volume_str), "%s%d", VOLUME, volume);
             ai_ui_disp_msg(AI_UI_DISP_NOTIFICATION, (uint8_t *)volume_str, strlen(volume_str));
 #endif
+            break;
+        }
+        case DPID_FALL_ALERT: {
+            if (dp->value.dp_bool) {
+                PR_NOTICE("Fall alert DP received — starting response flow");
+                app_fall_detected();
+            }
+            break;
+        }
+        case DPID_NEEDS_HELP: {
+            /* Cloud sending needs_help=false signals caregiver acknowledged */
+            if (!dp->value.dp_bool) {
+                app_fall_acknowledge();
+            }
             break;
         }
         default:
@@ -197,6 +216,7 @@ void user_event_handler_on(tuya_iot_client_t *client, tuya_event_msg_t *event)
             ai_ui_disp_msg(AI_UI_DISP_NETWORK, (uint8_t *)&wifi_status, sizeof(UI_WIFI_STATUS_E));
 #endif
             ai_audio_volume_upload();
+            app_camera_analyze_init();
         }
         break;
 
@@ -363,6 +383,11 @@ void user_main(void)
     ret = app_chat_bot_init();
     if (ret != OPRT_OK) {
         PR_ERR("app_chat_bot_init failed");
+    }
+
+    ret = app_fall_handler_init();
+    if (ret != OPRT_OK) {
+        PR_ERR("app_fall_handler_init failed");
     }
 
 #if defined(ENABLE_BATTERY) && (ENABLE_BATTERY == 1)

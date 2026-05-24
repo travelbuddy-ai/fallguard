@@ -11,6 +11,7 @@
 
 #include "ai_chat_main.h"
 #include "app_chat_bot.h"
+#include "app_fall_handler.h"
 
 #if defined(ENABLE_WIFI) && (ENABLE_WIFI == 1)
 #include "tkl_wifi.h"
@@ -99,6 +100,11 @@ static void __display_status_tm_cb(TIMER_ID timer_id, void *arg)
 static void __ai_video_display_flush(TDL_CAMERA_FRAME_T *frame)
 {
 #if defined(ENABLE_COMP_AI_DISPLAY) && (ENABLE_COMP_AI_DISPLAY == 1)
+    static bool s_camera_started = false;
+    if (!s_camera_started) {
+        ai_ui_camera_start(frame->width, frame->height);
+        s_camera_started = true;
+    }
     ai_ui_camera_flush(frame->data, frame->width, frame->height);
 #endif
 }
@@ -155,7 +161,16 @@ void __ai_picture_output_cb(uint8_t *data, uint32_t len, bool is_eof)
 
 static void __ai_chat_handle_event(AI_NOTIFY_EVENT_T *event)
 {
-    (void)event;
+    if (!event) {
+        return;
+    }
+
+    if (event->type == AI_USER_EVT_ASR_OK && app_fall_response_is_pending()) {
+        AI_NOTIFY_TEXT_T *text = (AI_NOTIFY_TEXT_T *)event->data;
+        if (text && text->data) {
+            app_fall_handle_asr_text(text->data);
+        }
+    }
 }
 
 OPERATE_RET app_chat_bot_init(void)
@@ -175,6 +190,7 @@ OPERATE_RET app_chat_bot_init(void)
     };
 
     TUYA_CALL_ERR_LOG(ai_video_init(&ai_video_cfg));
+    TUYA_CALL_ERR_LOG(ai_video_display_start());
 #endif
 
 #if defined(ENABLE_COMP_AI_MCP) && (ENABLE_COMP_AI_MCP == 1)

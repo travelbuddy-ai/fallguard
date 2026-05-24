@@ -9,6 +9,7 @@ set(APP_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 set(APP_MODULE_SRCS)
 list(APPEND APP_MODULE_SRCS
         ${APP_MODULE_PATH}/app_ui_helper.c
+        ${APP_MODULE_PATH}/ui_fallguard/ui_fallguard.c
     )
 
 if (NOT CONFIG_LVGL_PC_SIMULATOR STREQUAL "y")
@@ -28,6 +29,7 @@ if (CONFIG_ENABLE_GUI2_CHATBOT STREQUAL "y")
 elseif (CONFIG_ENABLE_GUI2_WECHAT STREQUAL "y")
     add_subdirectory(${APP_MODULE_PATH}/ui_wechat)
 endif()
+add_subdirectory(${APP_MODULE_PATH}/ui_fallguard)
 
 ########################################
 # Target Configure
