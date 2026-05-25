@@ -20,19 +20,21 @@ from dotenv import load_dotenv
 load_dotenv()
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
-TELEGRAM_CHAT_ID   = os.getenv("TELEGRAM_CHAT_ID", "")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 
 
 def send_fall_alert(image_bytes: bytes, result: dict) -> bool:
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
-        print("[Telegram] Not configured — set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env")
+        print(
+            "[Telegram] Not configured — set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env"
+        )
         return False
 
     dt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     caption = (
-        f"🚨 FALL ALERT! 🚨"
+        f"🚨 FALL ALERT! 🚨\n"
         f"Halp! I've fallen and I can't get up! 👵\n"
-        f"\n\n"
+        f"\n"
         f"Time — {dt}\n"
         # f"\n"
         # f"Pose: {result.get('pose_state', 'unknown')}\n"
@@ -49,7 +51,9 @@ def send_fall_alert(image_bytes: bytes, result: dict) -> bool:
             timeout=10,
         )
         ok = resp.json().get("ok", False)
-        print(f"[Telegram] {'Alert sent' if ok else 'Send failed'}: {resp.text if not ok else ''}")
+        print(
+            f"[Telegram] {'Alert sent' if ok else 'Send failed'}: {resp.text if not ok else ''}"
+        )
         return ok
     except Exception as exc:
         print(f"[Telegram] Error: {exc}")
@@ -58,7 +62,9 @@ def send_fall_alert(image_bytes: bytes, result: dict) -> bool:
 
 def send_mock_fall_alert(result: dict) -> bool:
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
-        print("[Telegram] Not configured — set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env")
+        print(
+            "[Telegram] Not configured — set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env"
+        )
         return False
 
     dt = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -77,7 +83,9 @@ def send_mock_fall_alert(result: dict) -> bool:
             timeout=10,
         )
         ok = resp.json().get("ok", False)
-        print(f"[Telegram] {'Mock alert sent' if ok else 'Send failed'}: {resp.text if not ok else ''}")
+        print(
+            f"[Telegram] {'Mock alert sent' if ok else 'Send failed'}: {resp.text if not ok else ''}"
+        )
         return ok
     except Exception as exc:
         print(f"[Telegram] Error: {exc}")
