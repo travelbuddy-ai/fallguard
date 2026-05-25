@@ -32,11 +32,18 @@ def _make_kps(
     return kps
 
 
+# Bounding boxes [x1, y1, x2, y2]
+STANDING_BOX = np.array([260.0, 50.0,  380.0, 400.0])  # tall box  (w=120, h=350)
+FALLEN_BOX   = np.array([100.0, 200.0, 540.0, 300.0])  # wide box  (w=440, h=100)
+
 # Standing: shoulders at y=150, hips at y=320 → body mostly vertical (~14°)
 STANDING_KPS = _make_kps(shoulder_y=150, hip_y=320)
 
 # Fallen: shoulders and hips at same y, far apart horizontally → ~90°
 FALLEN_KPS   = _make_kps(shoulder_y=240, hip_y=260, shoulder_x=160, hip_x=480)
+
+# Backward fall: low-conf keypoints but wide bounding box
+BACKWARD_FALL_KPS = _make_kps(shoulder_y=150, hip_y=320, conf=0.1)  # bad keypoints
 
 # Low confidence: should be ignored
 LOW_CONF_KPS = _make_kps(shoulder_y=150, hip_y=320, conf=0.1)
@@ -66,21 +73,18 @@ from fall_detector import FallDetector  # noqa: E402 (import after patch)
 # Override _run_inference to return our synthetic keypoints
 # ---------------------------------------------------------------------------
 
-def run_sequence(detector: FallDetector, keypoint_frames: list, device_id: str):
+def run_sequence(detector: FallDetector, frames: list, device_id: str):
+    """frames: list of (kps, box) tuples, or None for empty frame."""
     results = []
-    for kps in keypoint_frames:
-        # Patch inference for this frame
-        if kps is None:
+    for frame in frames:
+        if frame is None:
             detector._run_inference = lambda img: []
         else:
-            _kps = kps  # capture for closure
-            detector._run_inference = lambda img, k=_kps: [k]
+            _frame = frame
+            detector._run_inference = lambda img, f=_frame: [f]
 
-        # _decode is also patched — just return a dummy array
         detector._decode = lambda b: np.zeros((480, 640, 3), dtype=np.uint8)
-
-        result = detector.analyze(b"dummy", device_id)
-        results.append(result)
+        results.append(detector.analyze(b"dummy", device_id))
     return results
 
 
@@ -102,18 +106,20 @@ def test_standing_then_fall():
     d = FallDetector.__new__(FallDetector)
     d._states = {}
 
-    frames = [STANDING_KPS, STANDING_KPS, STANDING_KPS, FALLEN_KPS]
+    frames = [
+        (STANDING_KPS, STANDING_BOX),
+        (STANDING_KPS, STANDING_BOX),
+        (STANDING_KPS, STANDING_BOX),
+        (FALLEN_KPS,   FALLEN_BOX),
+    ]
     results = run_sequence(d, frames, "test-device")
 
-    r_stand = results[0]
-    r_fall  = results[3]
-
     ok = True
-    ok &= check("standing frame → pose_state=standing",   r_stand["pose_state"] == "standing")
-    ok &= check("standing frame → fall_detected=False",   r_stand["fall_detected"] == False)
-    ok &= check("fallen frame  → pose_state=fallen",      r_fall["pose_state"] == "fallen")
-    ok &= check("fallen frame  → fall_detected=True",     r_fall["fall_detected"] == True)
-    ok &= check("persons_detected=1",                     r_fall["persons_detected"] == 1)
+    ok &= check("standing frame → pose_state=standing",  results[0]["pose_state"] == "standing")
+    ok &= check("standing frame → fall_detected=False",  results[0]["fall_detected"] == False)
+    ok &= check("fallen frame  → pose_state=fallen",     results[3]["pose_state"] == "fallen")
+    ok &= check("fallen frame  → fall_detected=True",    results[3]["fall_detected"] == True)
+    ok &= check("persons_detected=1",                    results[3]["persons_detected"] == 1)
     return ok
 
 
@@ -122,7 +128,7 @@ def test_fall_without_prior_standing():
     d = FallDetector.__new__(FallDetector)
     d._states = {}
 
-    frames = [FALLEN_KPS, FALLEN_KPS]
+    frames = [(FALLEN_KPS, FALLEN_BOX), (FALLEN_KPS, FALLEN_BOX)]
     results = run_sequence(d, frames, "test-device-2")
 
     ok = True
@@ -135,27 +141,37 @@ def test_no_double_alert():
     d = FallDetector.__new__(FallDetector)
     d._states = {}
 
-    frames = [STANDING_KPS, STANDING_KPS, FALLEN_KPS, FALLEN_KPS, FALLEN_KPS]
+    frames = [
+        (STANDING_KPS, STANDING_BOX),
+        (STANDING_KPS, STANDING_BOX),
+        (FALLEN_KPS,   FALLEN_BOX),
+        (FALLEN_KPS,   FALLEN_BOX),
+        (FALLEN_KPS,   FALLEN_BOX),
+    ]
     results = run_sequence(d, frames, "test-device-3")
 
     ok = True
-    ok &= check("first fallen frame → fall_detected=True",  results[2]["fall_detected"] == True)
+    ok &= check("first fallen frame  → fall_detected=True",  results[2]["fall_detected"] == True)
     ok &= check("second fallen frame → fall_detected=False", results[3]["fall_detected"] == False)
     ok &= check("third fallen frame  → fall_detected=False", results[4]["fall_detected"] == False)
     return ok
 
 
 def test_low_confidence_ignored():
-    print("\n── Test 4: low-confidence keypoints ignored ──")
+    print("\n── Test 4: low-confidence keypoints + tall box → not fallen ──")
     d = FallDetector.__new__(FallDetector)
     d._states = {}
 
-    frames = [STANDING_KPS, STANDING_KPS, LOW_CONF_KPS]
+    frames = [
+        (STANDING_KPS, STANDING_BOX),
+        (STANDING_KPS, STANDING_BOX),
+        (LOW_CONF_KPS, STANDING_BOX),  # bad keypoints but tall box → not fallen
+    ]
     results = run_sequence(d, frames, "test-device-4")
 
     ok = True
-    ok &= check("low-conf frame → pose_state=unknown",      results[2]["pose_state"] == "unknown")
-    ok &= check("low-conf frame → fall_detected=False",     results[2]["fall_detected"] == False)
+    ok &= check("low-conf + tall box → pose_state != fallen",  results[2]["pose_state"] != "fallen")
+    ok &= check("low-conf + tall box → fall_detected=False",   results[2]["fall_detected"] == False)
     return ok
 
 
@@ -164,12 +180,30 @@ def test_no_person_detected():
     d = FallDetector.__new__(FallDetector)
     d._states = {}
 
-    frames = [STANDING_KPS, None]  # None → _run_inference returns []
+    frames = [(STANDING_KPS, STANDING_BOX), None]
     results = run_sequence(d, frames, "test-device-5")
 
     ok = True
-    ok &= check("empty frame → pose_state=unknown",     results[1]["pose_state"] == "unknown")
-    ok &= check("empty frame → persons_detected=0",     results[1]["persons_detected"] == 0)
+    ok &= check("empty frame → pose_state=unknown",  results[1]["pose_state"] == "unknown")
+    ok &= check("empty frame → persons_detected=0",  results[1]["persons_detected"] == 0)
+    return ok
+
+
+def test_backward_fall():
+    print("\n── Test 6: backward fall — bad keypoints but wide bbox → fall_detected ──")
+    d = FallDetector.__new__(FallDetector)
+    d._states = {}
+
+    frames = [
+        (STANDING_KPS,     STANDING_BOX),
+        (STANDING_KPS,     STANDING_BOX),
+        (BACKWARD_FALL_KPS, FALLEN_BOX),   # low-conf kps but wide box
+    ]
+    results = run_sequence(d, frames, "test-device-6")
+
+    ok = True
+    ok &= check("backward fall → pose_state=fallen",    results[2]["pose_state"] == "fallen")
+    ok &= check("backward fall → fall_detected=True",   results[2]["fall_detected"] == True)
     return ok
 
 
@@ -185,6 +219,7 @@ if __name__ == "__main__":
         test_no_double_alert(),
         test_low_confidence_ignored(),
         test_no_person_detected(),
+        test_backward_fall(),
     ]
 
     total  = len(results)

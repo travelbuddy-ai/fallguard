@@ -1,4 +1,4 @@
-# Install script for directory: /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/src/tal_image
+# Install script for directory: /Users/rohit/repos/TuyaOpen/src/tal_image
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,12 +39,12 @@ endif()
 
 # Set path to fallback-tool for dependency-resolution.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-objdump")
+  set(CMAKE_OBJDUMP "/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-objdump")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build/src/tal_image/install_local_manifest.txt"
+  file(WRITE "/Users/rohit/repos/TuyaOpen/apps/tuya.ai/fallguard/.build/src/tal_image/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

@@ -2,7 +2,7 @@
 #
 # configure project
 #
-set(CONFIG_PROJECT_NAME "travelbuddy")
+set(CONFIG_PROJECT_NAME "fallguard")
 set(CONFIG_PROJECT_VERSION "1.0.1")
 set(CONFIG_PROJECT_FRAMEWORK_BASE "y")
 # CONFIG_PROJECT_FRAMEWORK_ARDUINO is not set

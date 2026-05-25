@@ -15,7 +15,7 @@
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tuyaos_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -26,7 +26,7 @@ rule C_STATIC_LIBRARY_LINKER__tuyaos_
 rule C_COMPILER__tuyaapp_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -34,7 +34,7 @@ rule C_COMPILER__tuyaapp_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tuyaapp_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -53,7 +53,7 @@ rule CUSTOM_COMMAND
 rule C_COMPILER__audio_player_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -61,7 +61,7 @@ rule C_COMPILER__audio_player_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__audio_player_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -72,7 +72,7 @@ rule C_STATIC_LIBRARY_LINKER__audio_player_
 rule C_COMPILER__common_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -80,7 +80,7 @@ rule C_COMPILER__common_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__common_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -91,7 +91,7 @@ rule C_STATIC_LIBRARY_LINKER__common_
 rule C_COMPILER__libcjson_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -99,7 +99,7 @@ rule C_COMPILER__libcjson_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__libcjson_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -110,7 +110,7 @@ rule C_STATIC_LIBRARY_LINKER__libcjson_
 rule C_COMPILER__libhttp_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -118,7 +118,7 @@ rule C_COMPILER__libhttp_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__libhttp_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -129,7 +129,7 @@ rule C_STATIC_LIBRARY_LINKER__libhttp_
 rule C_COMPILER__v9_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -137,7 +137,7 @@ rule C_COMPILER__v9_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__v9_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -148,7 +148,7 @@ rule C_STATIC_LIBRARY_LINKER__v9_
 rule C_COMPILER__libmqtt_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -156,7 +156,7 @@ rule C_COMPILER__libmqtt_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__libmqtt_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -167,7 +167,7 @@ rule C_STATIC_LIBRARY_LINKER__libmqtt_
 rule C_COMPILER__libtls_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -175,7 +175,7 @@ rule C_COMPILER__libtls_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__libtls_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -186,7 +186,7 @@ rule C_STATIC_LIBRARY_LINKER__libtls_
 rule C_COMPILER__audio_codecs_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -194,7 +194,7 @@ rule C_COMPILER__audio_codecs_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__audio_codecs_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -205,7 +205,7 @@ rule C_STATIC_LIBRARY_LINKER__audio_codecs_
 rule C_COMPILER__display_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -213,7 +213,7 @@ rule C_COMPILER__display_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__display_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -224,7 +224,7 @@ rule C_STATIC_LIBRARY_LINKER__display_
 rule C_COMPILER__tp_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -232,7 +232,7 @@ rule C_COMPILER__tp_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tp_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -243,7 +243,7 @@ rule C_STATIC_LIBRARY_LINKER__tp_
 rule C_COMPILER__button_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -251,7 +251,7 @@ rule C_COMPILER__button_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__button_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -262,7 +262,7 @@ rule C_STATIC_LIBRARY_LINKER__button_
 rule C_COMPILER__led_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -270,7 +270,7 @@ rule C_COMPILER__led_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__led_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -281,7 +281,7 @@ rule C_STATIC_LIBRARY_LINKER__led_
 rule C_COMPILER__camera_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -289,7 +289,7 @@ rule C_COMPILER__camera_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__camera_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -300,7 +300,7 @@ rule C_STATIC_LIBRARY_LINKER__camera_
 rule C_COMPILER__tal_bluetooth_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -308,7 +308,7 @@ rule C_COMPILER__tal_bluetooth_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tal_bluetooth_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -319,7 +319,7 @@ rule C_STATIC_LIBRARY_LINKER__tal_bluetooth_
 rule C_COMPILER__tal_cellular_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -327,7 +327,7 @@ rule C_COMPILER__tal_cellular_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tal_cellular_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -338,7 +338,7 @@ rule C_STATIC_LIBRARY_LINKER__tal_cellular_
 rule C_COMPILER__tal_cli_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -346,7 +346,7 @@ rule C_COMPILER__tal_cli_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tal_cli_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -357,7 +357,7 @@ rule C_STATIC_LIBRARY_LINKER__tal_cli_
 rule C_COMPILER__tal_driver_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -365,7 +365,7 @@ rule C_COMPILER__tal_driver_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tal_driver_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -376,7 +376,7 @@ rule C_STATIC_LIBRARY_LINKER__tal_driver_
 rule C_COMPILER__tal_image_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -384,7 +384,7 @@ rule C_COMPILER__tal_image_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tal_image_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -395,7 +395,7 @@ rule C_STATIC_LIBRARY_LINKER__tal_image_
 rule C_COMPILER__tal_kv_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -403,7 +403,7 @@ rule C_COMPILER__tal_kv_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tal_kv_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -414,7 +414,7 @@ rule C_STATIC_LIBRARY_LINKER__tal_kv_
 rule C_COMPILER__tal_network_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -422,7 +422,7 @@ rule C_COMPILER__tal_network_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tal_network_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -433,7 +433,7 @@ rule C_STATIC_LIBRARY_LINKER__tal_network_
 rule C_COMPILER__tal_security_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -441,7 +441,7 @@ rule C_COMPILER__tal_security_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tal_security_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -452,7 +452,7 @@ rule C_STATIC_LIBRARY_LINKER__tal_security_
 rule C_COMPILER__tal_system_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -460,7 +460,7 @@ rule C_COMPILER__tal_system_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tal_system_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -471,7 +471,7 @@ rule C_STATIC_LIBRARY_LINKER__tal_system_
 rule C_COMPILER__tal_wifi_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -479,7 +479,7 @@ rule C_COMPILER__tal_wifi_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tal_wifi_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -490,7 +490,7 @@ rule C_STATIC_LIBRARY_LINKER__tal_wifi_
 rule C_COMPILER__tuya_ai_service_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -498,7 +498,7 @@ rule C_COMPILER__tuya_ai_service_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tuya_ai_service_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -509,7 +509,7 @@ rule C_STATIC_LIBRARY_LINKER__tuya_ai_service_
 rule C_COMPILER__tuya_cloud_service_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -517,7 +517,7 @@ rule C_COMPILER__tuya_cloud_service_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__tuya_cloud_service_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -528,7 +528,7 @@ rule C_STATIC_LIBRARY_LINKER__tuya_cloud_service_
 rule C_COMPILER__TUYA_T5AI_BOARD_unscanned_
   depfile = $DEP_FILE
   deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = ${LAUNCHER}${CODE_CHECK}/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building C object $out
 
 
@@ -536,7 +536,7 @@ rule C_COMPILER__TUYA_T5AI_BOARD_unscanned_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__TUYA_T5AI_BOARD_
-  command = $PRE_LINK && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E rm -f $TARGET_FILE && /Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib $TARGET_FILE && /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake -E touch $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
 
@@ -545,7 +545,7 @@ rule C_STATIC_LIBRARY_LINKER__TUYA_T5AI_BOARD_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake --regenerate-during-build -S/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen -B/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/.build
+  command = /Users/rohit/repos/TuyaOpen/.venv/lib/python3.13/site-packages/cmake/data/bin/cmake --regenerate-during-build -S/Users/rohit/repos/TuyaOpen -B/Users/rohit/repos/TuyaOpen/apps/tuya.ai/fallguard/.build
   description = Re-running CMake...
   generator = 1
 
@@ -554,7 +554,7 @@ rule RERUN_CMAKE
 # Rule for cleaning all built files.
 
 rule CLEAN
-  command = /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/bin/ninja $FILE_ARG -t clean $TARGETS
+  command = /Users/rohit/repos/TuyaOpen/.venv/bin/ninja $FILE_ARG -t clean $TARGETS
   description = Cleaning all built files...
 
 
@@ -562,6 +562,6 @@ rule CLEAN
 # Rule for printing all primary targets available.
 
 rule HELP
-  command = /Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/.venv/bin/ninja -t targets
+  command = /Users/rohit/repos/TuyaOpen/.venv/bin/ninja -t targets
   description = All primary targets available:
 

@@ -1,4 +1,5 @@
 app_default.config
+.build/
 
 # backend
 backend/.env

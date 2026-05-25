@@ -2,7 +2,7 @@
 menu "configure project"
     config PROJECT_NAME
         string "PROJECT_NAME"
-        default "travelbuddy"
+        default "fallguard"
     config PROJECT_VERSION
         string "PROJECT_VERSION"
         default "1.0.0"
@@ -22,6 +22,6 @@ menu "configure project"
         default "arduino" if PROJECT_FRAMEWORK_ARDUINO
 endmenu
 
-source "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/apps/tuya.ai/travelbuddy/Kconfig"
-source "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/boards/Kconfig"
-source "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/src/Kconfig"
+source "/Users/rohit/repos/TuyaOpen/apps/tuya.ai/fallguard/Kconfig"
+source "/Users/rohit/repos/TuyaOpen/boards/Kconfig"
+source "/Users/rohit/repos/TuyaOpen/src/Kconfig"

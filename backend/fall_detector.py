@@ -20,6 +20,11 @@ MIN_PERSON_CONF = 0.4   # discard low-confidence detections
 HISTORY_LEN = 6
 
 _model = None
+_latest_frame: Optional[bytes] = None  # latest annotated JPEG for /viewer
+
+
+def get_latest_frame() -> Optional[bytes]:
+    return _latest_frame
 
 
 def _load_model():
@@ -63,14 +68,16 @@ class FallDetector:
         best_angle: Optional[float] = None
         best_conf = 0.0
 
-        for kps in persons:
+        for kps, box in persons:
             angle, conf = self._body_angle(kps)
-            if angle is None:
+            bbox_horizontal = self._is_horizontal_bbox(box)
+
+            if angle is None and not bbox_horizontal:
                 continue
 
-            if angle > FALLEN_ANGLE:
+            if (angle is not None and angle > FALLEN_ANGLE) or bbox_horizontal:
                 pstate = "fallen"
-            elif angle < STANDING_ANGLE:
+            elif angle is not None and angle < STANDING_ANGLE:
                 pstate = "standing"
             else:
                 pstate = "transitioning"
@@ -107,19 +114,42 @@ class FallDetector:
             print(f"[FallDetector] Image decode error: {exc}")
             return None
 
-    def _run_inference(self, img: np.ndarray) -> List[np.ndarray]:
-        """Returns one (17, 3) keypoint array per detected person [x, y, conf]."""
+    def _run_inference(self, img: np.ndarray) -> List[Tuple[np.ndarray, np.ndarray]]:
+        """Returns list of (keypoints, bbox) per detected person.
+        keypoints: (17, 3) [x, y, conf]
+        bbox:      (4,)   [x1, y1, x2, y2]
+        Also stores the latest annotated frame for the /viewer endpoint.
+        """
+        global _latest_frame
         t0 = time.time()
         results = _model(img, verbose=False, conf=MIN_PERSON_CONF, imgsz=320)
         print(f"[FallDetector] inference {(time.time()-t0)*1000:.0f}ms")
+
+        # Store annotated frame (skeleton + bbox overlay) for live viewer
+        try:
+            annotated = results[0].plot()           # numpy BGR array
+            pil_img = Image.fromarray(annotated[:, :, ::-1])  # BGR → RGB
+            buf = io.BytesIO()
+            pil_img.save(buf, format="JPEG", quality=80)
+            _latest_frame = buf.getvalue()
+        except Exception:
+            pass
+
         persons = []
         for r in results:
             if r.keypoints is None or r.keypoints.data is None:
                 continue
-            kps = r.keypoints.data.cpu().numpy()  # (N, 17, 3)
-            for i in range(kps.shape[0]): 
-                persons.append(kps[i])
+            kps   = r.keypoints.data.cpu().numpy()   # (N, 17, 3)
+            boxes = r.boxes.xyxy.cpu().numpy()        # (N, 4)
+            for i in range(kps.shape[0]):
+                persons.append((kps[i], boxes[i]))
         return persons
+
+    @staticmethod
+    def _is_horizontal_bbox(box: np.ndarray) -> bool:
+        """Returns True if bounding box is wider than tall — person is horizontal."""
+        x1, y1, x2, y2 = box
+        return (x2 - x1) > (y2 - y1)
 
     def _body_angle(self, kp: np.ndarray) -> Tuple[Optional[float], float]:
         """

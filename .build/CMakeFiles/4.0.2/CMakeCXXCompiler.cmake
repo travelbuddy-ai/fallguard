@@ -1,4 +1,4 @@
-set(CMAKE_CXX_COMPILER "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-g++")
+set(CMAKE_CXX_COMPILER "/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-g++")
 set(CMAKE_CXX_COMPILER_ARG1 "")
 set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_CXX_COMPILER_VERSION "13.3.1")
@@ -25,14 +25,14 @@ set(CMAKE_CXX_SIMULATE_VERSION "")
 
 
 
-set(CMAKE_AR "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar")
-set(CMAKE_CXX_COMPILER_AR "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc-ar")
-set(CMAKE_RANLIB "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib")
-set(CMAKE_CXX_COMPILER_RANLIB "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib")
-set(CMAKE_LINKER "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ld")
+set(CMAKE_AR "/Users/rohit/repos/TuyaOpen/platform/T5AI/../tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ar")
+set(CMAKE_CXX_COMPILER_AR "/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc-ar")
+set(CMAKE_RANLIB "/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ranlib")
+set(CMAKE_CXX_COMPILER_RANLIB "/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib")
+set(CMAKE_LINKER "/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/arm-none-eabi-ld")
 set(CMAKE_LINKER_LINK "")
 set(CMAKE_LINKER_LLD "")
-set(CMAKE_CXX_COMPILER_LINKER "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld")
+set(CMAKE_CXX_COMPILER_LINKER "/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld")
 set(CMAKE_CXX_COMPILER_LINKER_ID "")
 set(CMAKE_CXX_COMPILER_LINKER_VERSION )
 set(CMAKE_CXX_COMPILER_LINKER_FRONTEND_VARIANT )
@@ -90,9 +90,9 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/include/c++/13.3.1;/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/include/c++/13.3.1/arm-none-eabi/thumb/v8-m.main+fp/hard;/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/include/c++/13.3.1/backward;/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/lib/gcc/arm-none-eabi/13.3.1/include;/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/lib/gcc/arm-none-eabi/13.3.1/include-fixed;/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/include")
+set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/include/c++/13.3.1;/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/include/c++/13.3.1/arm-none-eabi/thumb/v8-m.main+fp/hard;/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/include/c++/13.3.1/backward;/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/lib/gcc/arm-none-eabi/13.3.1/include;/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/lib/gcc/arm-none-eabi/13.3.1/include-fixed;/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/include")
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/lib/gcc/arm-none-eabi/13.3.1/thumb/v8-m.main+fp/hard;/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/lib/thumb/v8-m.main+fp/hard;/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/lib/gcc/arm-none-eabi/13.3.1;/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/lib/gcc;/Users/jonathanpaezlindsey/Desktop/git_repo/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/lib")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/lib/gcc/arm-none-eabi/13.3.1/thumb/v8-m.main+fp/hard;/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/lib/thumb/v8-m.main+fp/hard;/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/lib/gcc/arm-none-eabi/13.3.1;/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/lib/gcc;/Users/rohit/repos/TuyaOpen/platform/tools/arm-gnu-toolchain-13.3.rel1-darwin-arm64-arm-none-eabi/arm-none-eabi/lib")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")
 set(CMAKE_CXX_COMPILER_CLANG_RESOURCE_DIR "")
 

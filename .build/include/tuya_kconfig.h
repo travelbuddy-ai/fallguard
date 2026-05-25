@@ -21,7 +21,7 @@ extern "C" {
 //
 // configure project
 //
-#define PROJECT_NAME "travelbuddy"
+#define PROJECT_NAME "fallguard"
 #define PROJECT_VERSION "1.0.1"
 #define PROJECT_FRAMEWORK_BASE 1
 // CONFIG_PROJECT_FRAMEWORK_ARDUINO is not set
